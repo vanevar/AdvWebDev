@@ -7,7 +7,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema agile_tool
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `agile_tool` ;
 
 -- -----------------------------------------------------
 -- Schema agile_tool
@@ -18,8 +17,6 @@ USE `agile_tool` ;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`member` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`member` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
@@ -40,8 +37,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`project`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`project` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`project` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -63,8 +58,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`user_role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`user_role` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`user_role` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -77,8 +70,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`iteration`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`iteration` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`iteration` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `deadline` DATE NOT NULL,
@@ -98,8 +89,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`feature`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`feature` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`feature` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
@@ -137,8 +126,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`task_status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`task_status` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`task_status` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -150,8 +137,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`task`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`task` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`task` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
@@ -187,8 +172,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`acceptance_test`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`acceptance_test` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`acceptance_test` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(255) NOT NULL,
@@ -215,8 +198,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`tag`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`tag` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`tag` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -229,8 +210,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`feature_tag`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`feature_tag` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`feature_tag` (
   `feature_id` INT(10) UNSIGNED NOT NULL,
   `tag_id` INT(10) UNSIGNED NOT NULL,
@@ -254,8 +233,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`project_role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`project_role` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`project_role` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -267,13 +244,11 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`project_member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`project_member` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`project_member` (
   `member_id` INT(10) UNSIGNED NOT NULL,
   `project_id` INT(10) UNSIGNED NOT NULL,
   `role_id` INT(10) UNSIGNED NOT NULL,
-  `added_at` VARCHAR(45) NOT NULL,
+  `added_at` DATETIME NOT NULL,
   `token` VARCHAR(45) NULL,
   PRIMARY KEY (`member_id`, `project_id`),
   INDEX `fk_member_has_project_project1_idx` (`project_id` ASC),
@@ -301,8 +276,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`acceptance_test_status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `agile_tool`.`acceptance_test_status` ;
-
 CREATE TABLE IF NOT EXISTS `agile_tool`.`acceptance_test_status` (
   `iteration_id` INT(10) UNSIGNED NOT NULL,
   `acceptance_test_id` INT(10) UNSIGNED NOT NULL,
