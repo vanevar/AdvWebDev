@@ -1,0 +1,3 @@
+-- iteration_after_insert:
+-- Copy all acceptance tests still not satisfied in the previous iteration with the new iteration_id, and
+-- set is_satisfied to NULL to force the testers to test it again.
