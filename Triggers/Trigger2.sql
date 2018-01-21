@@ -12,7 +12,7 @@ BEGIN
  if length(new.name) < 1 then
 set msg = concat('Project Title is required');
         signal sqlstate '23000' set
-        MESSAGE_TEXT = msg, MYSQL_ERRNO=4001;
+        MESSAGE_TEXT = msg, MYSQL_ERRNO=3001;
     end if;
 	
 END$$
@@ -28,7 +28,7 @@ declare msg varchar(128);
  if length(new.name) < 1 then
 set msg = concat('Project Title is required');
         signal sqlstate '23000' set
-        MESSAGE_TEXT = msg, MYSQL_ERRNO=4001;
+        MESSAGE_TEXT = msg, MYSQL_ERRNO=3001;
     end if;
 	
 END$$
