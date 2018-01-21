@@ -6,25 +6,30 @@
  Delimiter $$
 Drop TRIGGER if exists acceptance_test_status_after_update$$
 CREATE TRIGGER acceptance_test_status_after_update 
-AFTER UPDATE ON agile_tool.acceptance_test_status 
+AFTER UPDATE ON testagile.acceptance_test_status 
 FOR EACH ROW
 BEGIN
 CALL doWhile(); 
 END$$
 
--- considering status 10 for new bugs
+DROP procedure IF EXISTS doWhile$$
 CREATE PROCEDURE doWhile()   
 BEGIN
-DECLARE taskownercount INT; 
-select count(is_satisfied) into taskownercount from task where is_satisfied is FALSE;
-WHILE (taskownercount < 1) DO
-    
-	INSERT INTO agile_tool.task 
-	set id=new.id, title ='New Bug',description='New bug encountered',estimated_duration=null,actual_duration=null,feature_id=LAST_INSERT_ID(),status_id=10,owner_id=null;
+DECLARE featureid INT; 
+DECLARE acceptanceid INT; 
+DECLARE statfailedcn INT; 
+
+		-- Selecting the data from Acceptance status and acceptance test table
+		SELECT count(acpstat.acceptance_test_id),acpstat.acceptance_test_id,acptest.feature_id INTO statfailedcn,acceptanceid,featureid
+		FROM testagile.acceptance_test_status AS acpstat, testagile.acceptance_test AS acptest 
+		WHERE acpstat.acceptance_test_id=acptest.id AND acpstat.is_satisfied is FALSE;
+
+		IF statfailedcn > 0 THEN 	
+		
+	INSERT INTO testagile.task(id,title,description,estimated_duration,actual_duration,feature_id,status_id,owner_id) VALUES (0 ,'New Bug',null,null,null,featureid,1,null); 
 	
-	INSERT INTO agile_tool.acceptance_test 
-	set id=new.id, description='New bug encountered',test_result='In progress',feature_id=LAST_INSERT_ID,bug_id=LAST_INSERT_ID;
-    
-	SET taskownercount = taskownercount -1;
-END WHILE;
+	UPDATE testagile.acceptance_test SET bug_id= LAST_INSERT_ID() where acceptance_test.id =acceptanceid;
+	
+	
+	END IF;
 END;
