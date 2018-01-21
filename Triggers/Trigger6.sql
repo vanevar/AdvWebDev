@@ -5,13 +5,14 @@
  Delimiter $$
 Drop TRIGGER if exists task_before_update$$
 CREATE TRIGGER task_before_update 
-Before INSERT ON agile_tool.task 
+Before UPDATE ON testagile.task 
 FOR EACH ROW
 BEGIN
 declare taskownercount int;
  declare msg varchar(128);
  
- select owner_id into taskownercount from task where status_id <> 1;
+ 
+ select count(id) into taskownercount from task where new.status_id <> 1 and new.owner_id is null;
  
  if taskownercount > 0 then
 	set msg = concat('Task Owner not defined');
