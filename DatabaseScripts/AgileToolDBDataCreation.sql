@@ -53,7 +53,7 @@ INSERT INTO `agile_tool`.`member` (`id`, `email`, `password`, `first_name`, `las
 INSERT INTO `agile_tool`.`member` (`id`, `email`, `password`, `first_name`, `last_name`, `created_at`, `confirmed_at`, `token`, `token_expiring_at`) 
   VALUES (5, 'neha_l@gmail.com', '123neha', 'Neha', 'Likhite', NULL, NULL, NULL, NULL);
 INSERT INTO `agile_tool`.`member` (`id`, `email`, `password`, `first_name`, `last_name`, `created_at`, `confirmed_at`, `token`, `token_expiring_at`) 
-  VALUES (5, 'mourad_m@gmail.com', '123mourad', 'Mourad', 'Melki', NULL, NULL, NULL, NULL);
+  VALUES (6, 'mourad_m@gmail.com', '123mourad', 'Mourad', 'Melki', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
