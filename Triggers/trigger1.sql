@@ -27,7 +27,7 @@ BEGIN
 SET NEW.first_name = TRIM(CONCAT(UCASE(LEFT(new.first_name, 1)),LCASE(SUBSTRING(new.first_name, 2))));
 SET NEW.last_name = TRIM(CONCAT(UCASE(LEFT(new.last_name, 1)),LCASE(SUBSTRING(new.last_name, 2))));
 SET NEW.email = TRIM(LOWER(NEW.email));
-SET NEW.password= MD5(NEW.password);
+SET NEW.password= NEW.password;
 
 END$$
 
