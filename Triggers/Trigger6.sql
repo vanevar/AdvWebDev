@@ -5,7 +5,7 @@
  Delimiter $$
 Drop TRIGGER if exists task_before_update$$
 CREATE TRIGGER task_before_update 
-Before UPDATE ON testagile.task 
+Before UPDATE ON agile_tool.task 
 FOR EACH ROW
 BEGIN
 declare taskownercount int;

@@ -6,13 +6,13 @@
  Delimiter $$
 Drop TRIGGER if exists iteration_after_insert$$
 CREATE TRIGGER iteration_after_insert 
-AFTER INSERT ON testagile.iteration
+AFTER INSERT ON agile_tool.iteration
 FOR EACH ROW
 BEGIN 
 DECLARE iterationid INT; 
 DECLARE acceptanceid INT; 
 
-select id into acceptanceid from testagile.acceptance_test as acpttest,testagile.acceptance_test_status as acptstat where (LOWER(test_result) NOT LIKE '%PASSED%'OR test_result is null) AND bug_id is null AND acptstat.acceptance_test_id= acpttest.id; 
+select id into acceptanceid from agile_tool.acceptance_test as acpttest,agile_tool.acceptance_test_status as acptstat where (LOWER(test_result) NOT LIKE '%PASSED%'OR test_result is null) AND bug_id is null AND acptstat.acceptance_test_id= acpttest.id; 
 
 update acceptance_test_status set iteration_id = new.id,is_satisfied=null 
 where acceptance_test_id IN (acceptanceid);
