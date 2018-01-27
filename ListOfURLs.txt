@@ -1,16 +1,20 @@
 Pages:
 -Login-signup
+
 -Home
  List of projects related to the user
+
 -Project
  List of features and members with roles
 -Project/add
 -Project/edit
+
  Manage everything but features
 -Project/iteration
 -Project/iteration/add
 -Project/feature
- Manage project features
+
+Manage project features
 -Project/feature/edit
 -Project/feature/add
 -Project/feature/tasks
