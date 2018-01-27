@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'AcceptanceTestController@index');
+
+Route::get('/home/{name}', 'ProjectController@getProjectForUser');
