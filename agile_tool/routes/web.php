@@ -13,50 +13,42 @@
 
 Route::get('/', 'AcceptanceTestController@index');
 
-Route::get('/home/{name}', 'ProjectController@getProjectForUser');
+
+// Vanessa's Controllers Tests
+Route::get('/home/{name}', 'AcceptanceTestController@getAcceptanceTestsForFeature');
 
 
 /* Rohit's version !!!!!*/
 
 Route::get('/project/features', function()
-	{
-$feature = DB::table('feature')->get();
-
-return view('project/feature',['feature' => $feature]);
-
-	});
+{
+	$feature = DB::table('feature')->get();
+	return view('project/feature',['feature' => $feature]);
+});
 
 Route::get('/project/iterations', function()
-	{
-$iteration = DB::table('iteration')->get();
+{
+	$iteration = DB::table('iteration')->get();
+	return view('project/iteration',['iteration' => $iteration]);
+});
 
-return view('project/iteration',['iteration' => $iteration]);
-
-	});
 Route::get('/project/features/tasks', function()
-	{
-$task = DB::table('task')->get();
+{
+	$task = DB::table('task')->get();
+	return view('project/task',['task' => $task]);
+});
 
-return view('project/task',['task' => $task]);
-
-	});
 Route::get('/project/features/acceptancetests', function()
-	{
-$acceptance_test = DB::table('acceptance_test')->get();
-
-return view('project/acceptancetest',['acceptance_test' => $acceptance_test]);
-
-	});
+{
+	$acceptance_test = DB::table('acceptance_test')->get();
+	return view('project/acceptancetest',['acceptance_test' => $acceptance_test]);
+});
 
 Route::get('/project', function(){
-
-$project = DB::table('project')->get();
-
-return view('project/project',['project' => $project]);
-
+	$project = DB::table('project')->get();
+	return view('project/project',['project' => $project]);
 });
+
 Route::get('/', function(){
-
-return view('login');
-
+	return view('login');
 });

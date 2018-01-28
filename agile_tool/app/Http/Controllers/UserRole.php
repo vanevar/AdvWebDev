@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\r;
 use Illuminate\Http\Request;
 
-class UserRoleController extends Controller
+class UserRole extends Controller
 {
     /**
      * Display a listing of the resource.

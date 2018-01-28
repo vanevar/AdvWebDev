@@ -11,7 +11,7 @@ class Iteration extends Model
      *
      * @var string
      */
-    protected $table = 'project';
+    protected $table = 'iteration';
 
     /**
      * Indicates if the model should be timestamped.
