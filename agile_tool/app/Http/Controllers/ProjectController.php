@@ -10,8 +10,16 @@ class ProjectController extends Controller
 {
     //Gets the Projects for the given user id
     public function getProjectsByUser($user_id){
-        return Project::join('project_member pm', 'pm.project_id', '=', 'project.id')
+        return Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
+        ->join('member AS m', 'm.id', '=', 'project.administrator_id')
         ->where('pm.member_id', '=', $user_id)
+        ->select('project.id' 
+        , 'project.name' 
+        , 'project.description' 
+        , 'project.administrator_id'
+        , 'project.created_at' 
+        , 'm.first_name AS administrator_FirstName'
+        , 'm.last_name AS administrator_LastName')
         ->get();
     }
 
@@ -22,7 +30,16 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::all();
+        return Project::join('member AS m', 'm.id', '=', 'project.administrator_id')
+        ->where('pm.member_id', '=', $user_id)
+        ->select('project.id' 
+        , 'project.name' 
+        , 'project.description' 
+        , 'project.administrator_id'
+        , 'project.created_at' 
+        , 'm.first_name AS administrator_FirstName'
+        , 'm.last_name AS administrator_LastName')
+        ->get();
     }
 
     /**

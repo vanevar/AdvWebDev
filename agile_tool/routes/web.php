@@ -11,11 +11,26 @@
 |
 */
 
-Route::get('/', 'AcceptanceTestController@index');
+/*
+Routes for the controllers -- BEGIN
+*/
 
-
+Route::resource('acceptanceTests', 'AcceptanceTestController');
+Route::resource('acceptanceTestsStatus', 'AcceptanceTestStatusController');
+Route::resource('features', 'FeatureController');
+Route::resource('iterations', 'IterationController');
+Route::resource('members', 'MemberController');
+Route::resource('projects', 'ProjectController');
+Route::resource('projectMembers', 'ProjectMemberController');
+Route::resource('projectRoles', 'ProjectRoleController');
+Route::resource('tasks', 'TaskController');
+Route::resource('taskStatus', 'TaskStatusController');
+Route::resource('userRoles', 'UserRoleController');
+/*
+Routes for the controllers -- END
+*/
 // Vanessa's Controllers Tests
-Route::get('/home/{name}', 'AcceptanceTestController@getAcceptanceTestsForFeature');
+Route::get('/home/{name}', 'ProjectController@getProjectsByUser');
 
 
 /* Rohit's version !!!!!*/
@@ -48,12 +63,6 @@ Route::get('/project', function(){
 	$project = DB::table('project')->get();
 	return view('project/project',['project' => $project]);
 });
-<<<<<<< HEAD
-=======
-Route::get('/', function(){
-
-return view('project/login');
->>>>>>> c639e7e33463ccb70038775149df76daf396b43e
 
 Route::get('/', function(){
 	return view('login');
