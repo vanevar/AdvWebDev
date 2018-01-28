@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Task_status extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'task_status';
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
