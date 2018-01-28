@@ -57,6 +57,6 @@ return view('project/project',['project' => $project]);
 });
 Route::get('/', function(){
 
-return view('login');
+return view('project/login');
 
 });
