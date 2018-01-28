@@ -48,6 +48,12 @@ Route::get('/project', function(){
 	$project = DB::table('project')->get();
 	return view('project/project',['project' => $project]);
 });
+<<<<<<< HEAD
+=======
+Route::get('/', function(){
+
+return view('project/login');
+>>>>>>> c639e7e33463ccb70038775149df76daf396b43e
 
 Route::get('/', function(){
 	return view('login');

@@ -7,12 +7,22 @@
 	 </div>
       <p class="lead">All the projects where the user is involved in.</p>
 
-@foreach ($project as $eproject)
+ <ul>
+  <div class="row">
+        <div class="col-1"><strong>S No.</strong></div>
+        <div class="col-2"><strong>Project Name</strong></div>
+        <div class="col-6"><strong>Description</strong></div>
+        <div class="col-2"><strong>Options</strong></div>
+   </div>
+  </ul>
+
+@foreach ($project as $index => $eproject)
       <ul>
       <div class="row">
-        <div class="col-4">{{$eproject->name}}</div>
-        <div class="col-4">{{$eproject->description}}</div>
-        <div class="col-4">
+        <div class="col-1">{{$index+1}}</div>
+        <div class="col-2">{{$eproject->name}}</div>
+        <div class="col-6">{{$eproject->description}}</div>
+        <div class="col-2">
 		<a href="edit project">edit project</a>
 		</div>
       </div>

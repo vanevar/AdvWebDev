@@ -18,19 +18,4 @@
         <div class="col-1"><strong>Options</strong></div>
    </div>
   </ul>
-
-@foreach ($acceptance_test as index$ => $eacceptancetest)
-      <ul>
-  <div class="row">
-        <div class="col-1">{{$index+1}}</div>
-        <div class="col-2">{{$eacceptancetest->description}}</div>
-        <div class="col-2">{{$eacceptancetest->test_result}}</div>
-        <div class="col-2">{{$eacceptancetest->feature_id}}</div>
-        <div class="col-1">{{$eacceptancetest->bug_id}}</div>
-        <div class="col-1">
-		      <a href="/project/feature/edit">edit project</a>
-		    </div>
-   </div>
-  </ul>
-  @endforeach
-    </div> <!-- /container -->
+</div>
