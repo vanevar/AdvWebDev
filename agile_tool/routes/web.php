@@ -34,7 +34,7 @@ Route::get('/home/{name}', 'ProjectController@getProjectsByUser');
 
 
 /* Rohit's version !!!!!*/
-
+/*
 Route::get('/project/features', function()
 {
 	$feature = DB::table('feature')->get();
@@ -63,7 +63,7 @@ Route::get('/project', function(){
 	$project = DB::table('project')->get();
 	return view('project/project',['project' => $project]);
 });
-
+*/
 Route::get('/', function(){
 	return view('login');
 });

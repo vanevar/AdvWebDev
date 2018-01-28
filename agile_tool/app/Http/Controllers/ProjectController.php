@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use View;
 
 
 class ProjectController extends Controller
 {
     //Gets the Projects for the given user id
     public function getProjectsByUser($user_id){
-        return Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
+        //Get all the projects by the given user Id
+        $projects = Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
         ->join('member AS m', 'm.id', '=', 'project.administrator_id')
         ->where('pm.member_id', '=', $user_id)
         ->select('project.id' 
@@ -21,6 +23,11 @@ class ProjectController extends Controller
         , 'm.first_name AS administrator_FirstName'
         , 'm.last_name AS administrator_LastName')
         ->get();
+
+        //return $projects;
+        // load the view and pass the projects
+        return View::make('project.project')
+            ->with('project', $projects);
     }
 
     /**
@@ -30,8 +37,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::join('member AS m', 'm.id', '=', 'project.administrator_id')
-        ->where('pm.member_id', '=', $user_id)
+        $projects = Project::join('member AS m', 'm.id', '=', 'project.administrator_id')
         ->select('project.id' 
         , 'project.name' 
         , 'project.description' 
@@ -40,6 +46,9 @@ class ProjectController extends Controller
         , 'm.first_name AS administrator_FirstName'
         , 'm.last_name AS administrator_LastName')
         ->get();
+
+        return View::make('project.project')
+            ->with('project', $projects);
     }
 
     /**
@@ -49,7 +58,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        // load the create form (app/views/nerds/create.blade.php)
+        //return View::make('nerds.create');
     }
 
     /**
@@ -60,7 +70,35 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        TO DO
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'name'       => 'required',
+            'email'      => 'required|email',
+            'nerd_level' => 'required|numeric'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('nerds/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $nerd = new Nerd;
+            $nerd->name       = Input::get('name');
+            $nerd->email      = Input::get('email');
+            $nerd->nerd_level = Input::get('nerd_level');
+            $nerd->save();
+
+            // redirect
+            Session::flash('message', 'Successfully created nerd!');
+            return Redirect::to('nerds');
+        }
+        */
     }
 
     /**
