@@ -8,6 +8,12 @@ body {
   height: 100%;
 }
 
+.featurespecial
+{
+margin-top: 190px;
+width: 90%;
+}
+
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -45,7 +51,7 @@ body {
   top: 0;
   left: 0;
   display: block;
-  width: 100%;
+  width: 200%;
   margin-bottom: 0; /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;

@@ -3,7 +3,7 @@
       <div class = "row">
 	  <h1>Projects</h1> 
 	  
-	<div class="input-group-addon"><a href="http://google.com"> <i class="fa fa-plus" aria-hidden="true"></i></a></div>
+	<div class="input-group-addon"><a href="/project/create"> <i class="fa fa-plus" aria-hidden="true"></i></a></div>
 	 </div>
       <p class="lead">All the projects where the user is involved in.</p>
 
@@ -23,7 +23,7 @@
         <div class="col-2">{{$eproject->name}}</div>
         <div class="col-6">{{$eproject->description}}</div>
         <div class="col-2">
-		<a href="edit project">edit project</a>
+		<a href="/project/edit">edit project</a>
 		</div>
       </div>
   </ul>

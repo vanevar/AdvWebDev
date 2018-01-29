@@ -48,13 +48,47 @@ Route::get('/project', function(){
 	$project = DB::table('project')->get();
 	return view('project/project',['project' => $project]);
 });
-<<<<<<< HEAD
-=======
-Route::get('/', function(){
 
+Route::get('/', function(){
 return view('project/login');
->>>>>>> c639e7e33463ccb70038775149df76daf396b43e
+});
 
-Route::get('/', function(){
-	return view('login');
+Route::get('/project/create', function(){
+return view('create/createproject');
+});
+
+Route::get('/project/edit', function(){
+return view('edit/editproject');
+});
+
+Route::get('/project/features/create', function(){
+return view('create/createfeature');
+});
+
+Route::get('/project/features/edit', function(){
+return view('edit/editfeature');
+});
+
+Route::get('/project/features/tasks/create', function(){
+return view('create/createtask');
+});
+
+Route::get('/project/features/tasks/edit', function(){
+return view('edit/edittask');
+});
+
+Route::get('/project/features/acceptancetests/create', function(){
+return view('create/createacpttest');
+});
+
+Route::get('/project/features/acceptancetests/edit', function(){
+return view('edit/editacpttest');
+});
+
+Route::get('/project/iterations/create', function(){
+return view('create/createiteration');
+});
+
+Route::get('/project/iterations/edit', function(){
+return view('edit/edititeration');
 });
