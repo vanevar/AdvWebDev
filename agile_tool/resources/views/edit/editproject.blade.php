@@ -11,6 +11,6 @@
   </head>
   <body>
 @extends ('layout/header')
-@extends('layout/createprojectlayout')
+@extends('layout/editprojectlayout')
 </body>
 </html>

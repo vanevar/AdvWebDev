@@ -134,11 +134,12 @@ class ProjectController extends Controller
      */
     public function update(Request $projectequest, Project $project)
     {
-        $project->name = $projectequest->name;
-        $project->description = $projectequest->description;
+        $project->name = $projectequest->projectname;
+        $project->description = $projectequest->projectdescription;
 
-        $project.save();
+        $project->save();
         return Redirect::to('projects');
+        //return $projectequest;
     }
 
     /**
