@@ -102,3 +102,13 @@ return view('project/login');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/features/{project}', 'FeatureController@show');
+
+Route::get('/features/{project}/create', 'FeatureController@create');
+
+Route::post('/features/{project}/store', 'FeatureController@store');
+
+Route::get('/features/{feature}/edit', 'FeatureController@edit');
+
+Route::post('/features/update', 'FeatureController@update');

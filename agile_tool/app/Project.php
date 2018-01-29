@@ -19,4 +19,12 @@ class Project extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function features(){
+        return $this->hasMany(Feature::class);
+    }
+
+    public function addFeature($feature){
+        $this->features()->create(compact('feature'));
+    }
 }
