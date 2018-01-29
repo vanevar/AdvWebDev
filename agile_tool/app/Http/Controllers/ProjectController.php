@@ -40,6 +40,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        //TODO use UserId for filtering
         $projects = Project::join('member AS m', 'm.id', '=', 'project.administrator_id')
         ->select('project.id' 
         , 'project.name' 
@@ -67,18 +68,18 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $projectequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $projectequest)
     {   
         // validate
         // read more on validation at http://laravel.com/docs/validation
         /*
-        $rules = array(
+        $projectules = array(
             'projectname' => 'required'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), $projectules);
 
         // process the project
         if ($validator->fails()) {
@@ -89,10 +90,10 @@ class ProjectController extends Controller
         */
             // store
             $project = new Project;
-            $project->name = $request->projectname;
-            $project->description = $request->projectdescription;
+            $project->name = $projectequest->projectname;
+            $project->description = $projectequest->projectdescription;
           
-            $project->administrator_id = 1; // should be changed to the User's
+            $project->administrator_id = 1; // TODO changed to the User's
             $project->created_at = date('Y-m-d H:i:s');
 
             $project->save();
@@ -104,45 +105,50 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\r  $r
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(r $r)
+    public function show(Project $project)
     {
-        //
+        //NOT NEEDED
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\r  $r
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(r $r)
+    public function edit(Project $project)
     {
-        //
+        return View::make('edit.editproject')
+            ->with('project', $project);;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\r  $r
+     * @param  \Illuminate\Http\Request  $projectequest
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, r $r)
+    public function update(Request $projectequest, Project $project)
     {
-        //
+        $project->name = $projectequest->name;
+        $project->description = $projectequest->description;
+
+        $project.save();
+        return Redirect::to('projects');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\r  $r
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(r $r)
+    public function destroy(Project $project)
     {
-        //
+        //NOT NEEDED
     }
 }

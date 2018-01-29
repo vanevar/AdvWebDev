@@ -23,7 +23,7 @@
         <div class="col-2">{{$eproject->name}}</div>
         <div class="col-6">{{$eproject->description}}</div>
         <div class="col-2">
-		<a href="/project/edit">edit project</a>
+		<a href="/projects/{{$eproject->id}}/edit">edit project</a>
 		</div>
       </div>
   </ul>
