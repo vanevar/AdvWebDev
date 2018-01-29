@@ -11,15 +11,30 @@
 |
 */
 
-Route::get('/', 'AcceptanceTestController@index');
+/*
+Routes for the controllers -- BEGIN
+*/
 
-
+Route::resource('acceptanceTests', 'AcceptanceTestController');
+Route::resource('acceptanceTestsStatus', 'AcceptanceTestStatusController');
+Route::resource('features', 'FeatureController');
+Route::resource('iterations', 'IterationController');
+Route::resource('members', 'MemberController');
+Route::resource('projects', 'ProjectController');
+Route::resource('projectMembers', 'ProjectMemberController');
+Route::resource('projectRoles', 'ProjectRoleController');
+Route::resource('tasks', 'TaskController');
+Route::resource('taskStatus', 'TaskStatusController');
+Route::resource('userRoles', 'UserRoleController');
+/*
+Routes for the controllers -- END
+*/
 // Vanessa's Controllers Tests
-Route::get('/home/{name}', 'AcceptanceTestController@getAcceptanceTestsForFeature');
+Route::get('/home/{name}', 'ProjectController@getProjectsByUser');
 
 
 /* Rohit's version !!!!!*/
-
+/*
 Route::get('/project/features', function()
 {
 	$feature = DB::table('feature')->get();
@@ -48,6 +63,7 @@ Route::get('/project', function(){
 	$project = DB::table('project')->get();
 	return view('project/project',['project' => $project]);
 });
+<<<<<<< HEAD
 
 Route::get('/', function(){
 return view('project/login');
@@ -91,4 +107,9 @@ return view('create/createiteration');
 
 Route::get('/project/iterations/edit', function(){
 return view('edit/edititeration');
+=======
+*/
+Route::get('/', function(){
+	return view('login');
+>>>>>>> d1f11ebc70e10436110f1a110229ce9f07765d1d
 });
