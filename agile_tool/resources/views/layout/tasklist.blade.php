@@ -9,10 +9,9 @@
  <ul>
   <div class="row">
         <div class="col-1"><strong>S No.</strong></div>
-        <div class="col-2"><strong>Title</strong></div>
         <div class="col-2"><strong>Description</strong></div>
         <div class="col-2"><strong>Status</strong></div>
-        <div class="col-1"><strong>Owner</strong></div>
+        <div class="col-2"><strong>Owner</strong></div>
         <div class="col-1"><strong>Options</strong></div>
    </div>
   </ul>
@@ -21,12 +20,11 @@
       <ul>
   <div class="row">
         <div class="col-1">{{$index+1}}</div>
-        <div class="col-2">{{$etask->title}}</div>
         <div class="col-2">{{$etask->description}}</div>
-        <div class="col-2">{{$etask->status_id}}</div>
-        <div class="col-1">{{$etask->owner_id}}</div>
+        <div class="col-2">{{$etask->task_status}}</div>
+        <div class="col-2">{{$etask->owner_name}} {{$etask->owner_last_name}}</div>
         <div class="col-1">
-		      <a href="/project/features/tasks/edit">edit project</a>
+		      <a href="/project/features/tasks/edit">edit task</a>
 		    </div>
    </div>
   </ul>
