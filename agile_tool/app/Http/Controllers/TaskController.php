@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Feature;
+use App\Member;
 use App\Task;
+use App\Task_status;
+
+use App\Http\MemberController;
 
 use Illuminate\Http\Request;
 use View;
@@ -16,6 +20,13 @@ class TaskController extends Controller
             ->get();
     }
 
+    public function getMembersByProject($project_id)
+    {
+        $members = Member::join('project_member AS pm', 'pm.member_id', '=', 'member.id')
+        ->where('pm.project_id', '=', $project_id )
+        ->get();
+        return $members;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +62,18 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return View::make('create.createtask');
+        //TODO this should be dinamic some how (?)
+        $project_id = 1;
+        //List of available features
+        $features = Feature::all();
+        //List of available status Default to New
+        $status = Task_status::where('task_status.name', '=', 'TO DO');
+        //List of available members (based on project_id)
+        $members = $this->getMembersByProject($project_id);
+        return View::make('create.createtask')
+        ->with('status', $status)
+        ->with('members', $members)
+        ->with('features', $features);
     }
 
     /**
@@ -63,25 +85,15 @@ class TaskController extends Controller
     public function store(Request $taskrequest)
     {   
         return $taskrequest;
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        /*
-        $projectules = array(
-            'projectname' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $projectules);
-
-        // process the project
-        if ($validator->fails()) {
-            return Redirect::to('projects/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-        */
+        
             // store
             $task = new Task;
-            $task->name = $taskrequest->projectname;
-            $task->description = $taskrequest->projectdescription;
+            $task->description = $taskrequest->description;
+            $task->estimated_duration = $taskrequest->estimated_duration;
+            $task->actual_duration = $taskrequest->actual_duration;
+            $task->feature_id = $taskrequest->feature_id;
+            $task->status = $taskrequest->status;
+            $task->owner_id = $taskrequest->owner_id;
           
             $task->save();
             // redirect
@@ -92,10 +104,10 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Task $task)
     {
         //NOT NEEDED
     }
@@ -103,39 +115,55 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Task $task)
     {
-        return View::make('edit.editproject')
-            ->with('project', $project);;
+        //TODO this should be dinamic some how (?)
+        $project_id = 1;
+        //List of available features
+        $features = Feature::all();
+        //List of available status Default to New
+        $status = Task_status::where('task_status.name', '=', 'TO DO');
+        //List of available members (based on project_id)
+        $members = $this->getMembersByProject($project_id);
+        
+        return View::make('edit.edittask')
+        ->with('task', $task)
+        ->with('status', $status)
+        ->with('members', $members)
+        ->with('features', $features);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $projectequest
-     * @param  \App\Project  $project
+     * @param  \Illuminate\Http\Request  $taskrequest
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $projectequest, Project $project)
+    public function update(Request $taskrequest, Task $task)
     {
-        $project->name = $projectequest->projectname;
-        $project->description = $projectequest->projectdescription;
+        $task->description = $taskrequest->description;
+        $task->estimated_duration = $taskrequest->estimated_duration;
+        $task->actual_duration = $taskrequest->actual_duration;
+        $task->feature_id = $taskrequest->feature_id;
+        $task->status = $taskrequest->status;
+        $task->owner_id = $taskrequest->owner_id;
 
         $project->save();
-        return Redirect::to('projects');
-        //return $projectequest;
+        return Redirect::to('tasks');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Task $task)
     {
         //NOT NEEDED
     }
