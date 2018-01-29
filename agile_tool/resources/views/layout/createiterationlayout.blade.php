@@ -1,4 +1,6 @@
 <div class="container">
+  <form action="/projects/iteration" method="post">
+  {{ csrf_field() }}
   <div class="form-group row">
     <h1> Create a new Iteration</h1>
   </div>
@@ -23,5 +25,5 @@
     <br><br><button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
-</div>
+</form>
 </div>

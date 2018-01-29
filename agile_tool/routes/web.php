@@ -95,8 +95,9 @@ Route::get('/project/iterations/edit', function(){
 return view('edit/edititeration');
 });
 */
+
 Route::get('/', function(){
-	return view('login');
+return view('project/login');
 });
 Auth::routes();
 
