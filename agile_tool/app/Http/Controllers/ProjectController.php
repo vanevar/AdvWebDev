@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use View;
 
 
@@ -58,8 +61,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        // load the create form (app/views/nerds/create.blade.php)
-        //return View::make('nerds.create');
+        return View::make('create.createproject');
     }
 
     /**
@@ -69,36 +71,34 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        /*
-        TO DO
+    {   
         // validate
         // read more on validation at http://laravel.com/docs/validation
+        /*
         $rules = array(
-            'name'       => 'required',
-            'email'      => 'required|email',
-            'nerd_level' => 'required|numeric'
+            'projectname' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
+        // process the project
         if ($validator->fails()) {
-            return Redirect::to('nerds/create')
+            return Redirect::to('projects/create')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
-            // store
-            $nerd = new Nerd;
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
-            $nerd->save();
-
-            // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('nerds');
-        }
         */
+            // store
+            $project = new Project;
+            $project->name = $request->projectname;
+            $project->description = $request->projectdescription;
+          
+            $project->administrator_id = 1; // should be changed to the User's
+            $project->created_at = date('Y-m-d H:i:s');
+
+            $project->save();
+            // redirect
+            return Redirect::to('projects');
+        //}
     }
 
     /**

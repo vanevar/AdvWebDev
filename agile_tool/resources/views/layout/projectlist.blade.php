@@ -3,7 +3,7 @@
       <div class = "row">
 	  <h1>Projects</h1> 
 	  
-	<div class="input-group-addon"><a href="/project/create"> <i class="fa fa-plus" aria-hidden="true"></i></a></div>
+	<div class="input-group-addon"><a href="/projects/create"> <i class="fa fa-plus" aria-hidden="true"></i></a></div>
 	 </div>
       <p class="lead">All the projects where the user is involved in.</p>
 
