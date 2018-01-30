@@ -1,6 +1,11 @@
 <div class="featurespecial">
+<<<<<<< HEAD
+    <form action="/projects/feature" method="post">
+  {{ csrf_field() }}
+=======
   <form  method="POST" action="/features/{{ $project->id }}/store">
       {{ csrf_field() }}
+>>>>>>> 840a2f6f6f6c8d75c3cb89b7d616caa97cbb85bc
   <div class="form-group row">
     <h1> Create a new Feature</h1>
   </div>
@@ -57,5 +62,9 @@
     <br><br><button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
+<<<<<<< HEAD
+</form>
+=======
   </form>
+>>>>>>> 840a2f6f6f6c8d75c3cb89b7d616caa97cbb85bc
 </div>
