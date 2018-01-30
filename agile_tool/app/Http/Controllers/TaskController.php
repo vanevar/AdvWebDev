@@ -37,7 +37,7 @@ class TaskController extends Controller
         //TODO FILTER
         $tasks = Task::join('feature as f', 'f.id', '=', 'task.feature_id')
         ->join('task_status as ts', 'ts.id', '=', 'task.status_id')
-        ->join('member AS m', 'm.id', '=', 'task.owner_id')
+        ->join('users AS u', 'u.id', '=', 'task.owner_id')
         ->select('task.id'
         , 'task.description'
         , 'task.estimated_duration'
@@ -47,8 +47,8 @@ class TaskController extends Controller
         , 'owner_id' 
         , 'f.title AS feature_title'
         , 'ts.name AS task_status'
-        , 'm.first_name AS owner_name'
-        , 'm.last_name AS owner_last_name')
+        , 'u.firstname AS owner_name'
+        , 'u.lastname AS owner_last_name')
         ->get();
 
         return View::make('project.task')

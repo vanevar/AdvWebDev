@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -16,15 +17,15 @@ class ProjectController extends Controller
     public function getProjectsByUser($user_id){
         //Get all the projects by the given user Id
         $projects = Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
-        ->join('member AS m', 'm.id', '=', 'project.administrator_id')
+        ->join('user AS u', 'u.id', '=', 'project.administrator_id')
         ->where('pm.member_id', '=', $user_id)
         ->select('project.id' 
         , 'project.name' 
         , 'project.description' 
         , 'project.administrator_id'
         , 'project.created_at' 
-        , 'm.first_name AS administrator_FirstName'
-        , 'm.last_name AS administrator_LastName')
+        , 'u.firstname AS administrator_FirstName'
+        , 'u.lastname AS administrator_LastName')
         ->get();
 
         //return $projects;
@@ -40,15 +41,18 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //TODO use UserId for filtering
-        $projects = Project::join('member AS m', 'm.id', '=', 'project.administrator_id')
+        $user_id = Auth::id();
+ 
+        $projects = Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
+        ->join('users AS u', 'u.id', '=', 'project.administrator_id')
+        ->where('pm.member_id', '=', $user_id)
         ->select('project.id' 
         , 'project.name' 
         , 'project.description' 
         , 'project.administrator_id'
         , 'project.created_at' 
-        , 'm.first_name AS administrator_FirstName'
-        , 'm.last_name AS administrator_LastName')
+        , 'u.firstname AS administrator_FirstName'
+        , 'u.lastname AS administrator_LastName')
         ->get();
 
         return View::make('project.project')
@@ -73,33 +77,19 @@ class ProjectController extends Controller
      */
     public function store(Request $projectequest)
     {   
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        /*
-        $projectules = array(
-            'projectname' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $projectules);
-
-        // process the project
-        if ($validator->fails()) {
-            return Redirect::to('projects/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-        */
-            // store
-            $project = new Project;
-            $project->name = $projectequest->projectname;
-            $project->description = $projectequest->projectdescription;
+        
+        // store
+        $project = new Project;
+        $project->name = $projectequest->projectname;
+        $project->description = $projectequest->projectdescription;
           
-            $project->administrator_id = 1; // TODO changed to the User's
-            $project->created_at = date('Y-m-d H:i:s');
+        $project->administrator_id = Auth::id();
+        $project->created_at = date('Y-m-d H:i:s');
 
-            $project->save();
-            // redirect
-            return Redirect::to('projects');
-        //}
+        $project->save();
+        // redirect
+        return Redirect::to('projects');
+        
     }
 
     /**
@@ -139,7 +129,6 @@ class ProjectController extends Controller
 
         $project->save();
         return Redirect::to('projects');
-        //return $projectequest;
     }
 
     /**
