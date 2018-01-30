@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Feature;
+use App\Project;
+
 class Iteration extends Model
 {
     /**
@@ -19,4 +22,12 @@ class Iteration extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function features(){
+        return $this->hasMany(Feature::class);
+    }
+
+    public function project(){
+        return $this->belongsTo(Project::class);
+    }
 }

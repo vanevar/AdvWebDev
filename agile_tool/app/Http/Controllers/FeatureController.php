@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 use App\Http\Controllers\Controller;
+
 use App\Project;
 use App\Feature;
+use App\User_role;
 
 class FeatureController extends Controller
 {
@@ -14,9 +18,10 @@ class FeatureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($project_id)
     {
-        //
+        $project = Project::find($project_id);
+        return view('project.feature', compact('project'));
     }
 
     /**
@@ -27,7 +32,8 @@ class FeatureController extends Controller
     public function create($project_id)
     {
         $project = Project::find($project_id);
-        return view('create.createfeature',  compact('project'));
+        $user_roles = User_role::all();
+        return view('create.createfeature',  compact(['project', 'user_roles']));
     }
 
     /**
@@ -48,7 +54,8 @@ class FeatureController extends Controller
             'user_role_id' =>request('user_role_id'),
             'project_id' => $project->id
         ]);
-        echo $project->features;
+
+        return Redirect::to('/features/'.$project->id);
     }
 
     /**
@@ -72,7 +79,7 @@ class FeatureController extends Controller
     public function edit($feature_id)
     {
         $feature = Feature::find($feature_id);
-        echo $feature;
+        return view('edit.editfeature',  compact('feature'));
     }
 
     /**
@@ -91,8 +98,9 @@ class FeatureController extends Controller
         $feature->priority = request('priority');
         $feature->iteration_id = request('iteration_id');
         $feature->user_role_id = request('user_role_id');
-        $feature->project_id = request('project_id');
         $feature->save();
+
+        return Redirect::to('/features/'.$feature->project_id);
     }
 
     /**

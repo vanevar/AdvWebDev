@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Feature;
+use App\Iteration;
+
+
 class Project extends Model
 {
     /**
@@ -22,6 +26,10 @@ class Project extends Model
 
     public function features(){
         return $this->hasMany(Feature::class);
+    }
+
+    public function iterations(){
+        return $this->hasMany(Iteration::class);
     }
 
     public function addFeature($feature){
