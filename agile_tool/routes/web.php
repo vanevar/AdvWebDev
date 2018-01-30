@@ -11,8 +11,13 @@
 |
 */
 
-// Vanessa's Controllers Tests
-Route::get('/home/{name}', 'ProjectController@getProjectsByUser');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 /**
 	Feature
@@ -26,7 +31,7 @@ Route::post('/features/{project}/store', 'FeatureController@store');
 
 Route::get('/features/{feature}/edit', 'FeatureController@edit');
 
-Route::post('/features/update', 'FeatureController@update');
+Route::post('/features/{feature}/update', 'FeatureController@update');
 
 /**
 	Task
@@ -40,7 +45,7 @@ Route::post('/tasks/{feature}/store', 'TaskController@store');
 
 Route::get('/tasks/{task}/edit', 'TaskController@edit');
 
-Route::post('/tasks/update', 'TaskController@update');
+Route::post('/tasks/{task}/update', 'TaskController@update');
 
 /**
 	Project
@@ -54,7 +59,7 @@ Route::post('/projects/store', 'ProjectController@store');
 
 Route::get('/projects/{feature}/edit', 'ProjectController@edit');
 
-Route::post('/projects/update', 'ProjectController@update');
+Route::post('/projects/{feature}/update', 'ProjectController@update');
 
 /**
 	Iteration
@@ -68,7 +73,7 @@ Route::post('/iterations/{project}/store', 'IterationController@store');
 
 Route::get('/iterations/{iteration}/edit', 'IterationController@edit');
 
-Route::post('/iterations/update', 'IterationController@update');
+Route::post('/iterations/{iteration}/update', 'IterationController@update');
 
 /**
 	AcceptanceTest
@@ -82,4 +87,4 @@ Route::post('/acceptance-tests/{feature}/store', 'AcceptanceTestController@store
 
 Route::get('/acceptance-tests/{acceptance-test}/edit', 'AcceptanceTestController@edit');
 
-Route::post('/acceptance-tests/update', 'AcceptanceTestController@update');
+Route::post('/acceptance-tests/{acceptance-test}update', 'AcceptanceTestController@update');
