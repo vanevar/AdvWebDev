@@ -71,33 +71,33 @@ INSERT INTO `agile_tool`.`project` (`id`, `name`, `description`, `administrator_
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `agile_tool`.`project_member`
+-- Data for table `agile_tool`.`project_user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `agile_tool`;
 
 -- PROJECT 1 | Coach Owner Developers QA
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (4, 1, 1, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (3, 1, 2, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (1, 1, 3, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (2, 1, 3, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (5, 1, 4, '2017-09-01', NULL);
 
 -- PROJECT 2 | Coach Owner Developers QA
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (1, 2, 1, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (4, 2, 2, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (5, 2, 3, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (3, 2, 3, '2017-09-01', NULL);
-INSERT INTO `agile_tool`.`project_member` (`member_id`, `project_id`, `role_id`, `added_at`, `token`) 
+INSERT INTO `agile_tool`.`project_user` (`user_id`, `project_id`, `role_id`, `added_at`, `token`) 
 VALUES (2, 2, 4, '2017-09-01', NULL);
 
 

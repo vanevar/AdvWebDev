@@ -11,8 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema agile_tool
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `agile_tool` DEFAULT CHARACTER SET utf8 ;
-USE `agile_tool` ;
+-- CREATE SCHEMA IF NOT EXISTS `agile_tool` DEFAULT CHARACTER SET utf8 ;
+-- USE `agile_tool` ;
 
 -- -----------------------------------------------------
 -- Table `agile_tool`.`member`
@@ -244,18 +244,18 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `agile_tool`.`project_member`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `agile_tool`.`project_member` (
-  `member_id` INT(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `agile_tool`.`project_user` (
+  `user_id` INT(10) UNSIGNED NOT NULL,
   `project_id` INT(10) UNSIGNED NOT NULL,
   `role_id` INT(10) UNSIGNED NOT NULL,
   `added_at` DATETIME NOT NULL,
   `token` VARCHAR(45) NULL,
-  PRIMARY KEY (`member_id`, `project_id`),
+  PRIMARY KEY (`user_id`, `project_id`),
   INDEX `fk_member_has_project_project1_idx` (`project_id` ASC),
-  INDEX `fk_member_has_project_member_idx` (`member_id` ASC),
+  INDEX `fk_member_has_project_member_idx` (`user_id` ASC),
   INDEX `fk_project_member_Role1_idx` (`role_id` ASC),
   CONSTRAINT `fk_member_has_project_member`
-    FOREIGN KEY (`member_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `agile_tool`.`member` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
