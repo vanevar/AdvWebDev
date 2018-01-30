@@ -12,11 +12,11 @@
   <body>
 @extends ('layout/header')
 <div class="container">
-<form action="{{url('projects', [$project->id])}}" method="post">
+<form action="/projects/{{ $project->id }}/update" method="post">
   {{ csrf_field() }}
   <input type="hidden" name="_method" value="PUT">
   <div class="form-group row">
-  <h1>Create a New Project</h1>
+  <h1>Edit a Project</h1>
   </div>
   <div class="form-group row">
     <label for="projectname" class="col-2 col-form-label">Project Name</label>

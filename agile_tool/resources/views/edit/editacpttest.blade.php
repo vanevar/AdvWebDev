@@ -12,10 +12,10 @@
   <body>
 @extends ('layout/header')
 <div class="container">
-  <form action="{{url('projects/Feature/acpttest', [$project->id])}}" method="post">
+  <form action="/acceptancetests/{{ $acceptance_test->id }}/update" method="post">
   {{ csrf_field() }}
   <div class="form-group row">
-    <h1> Create a new Acceptance Test</h1>
+    <h1> Edit an Acceptance Test</h1>
   </div>
 <div class="form-group row">
   <label for="acpttestdesc" class="col-2 col-form-label">Description</label>
@@ -42,11 +42,7 @@
   <div class="form-group row">
     <label for="acpttestbug" class="col-2 col-form-label">Bug Id</label>
     <div class="col-10">
-    <select class="form-control" id="acpttestbug">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-    </select>
+      <a href="/tasks/{{$feature->id}}/store">Create a new Bug</a>
   </div>
   </div>
   <div class="form-group row">

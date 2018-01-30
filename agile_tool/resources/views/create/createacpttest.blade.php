@@ -12,7 +12,7 @@
   <body>
 @extends ('layout/header')
 <div class="container">
-  <form action="/acpttest/{{ $feature->id }}/store" method="post">
+  <form action="/acceptancetests/{{ $feature->id }}/store" method="post">
   {{ csrf_field() }}
   <div class="form-group row">
     <h1> Create a new Acceptance Test</h1>
@@ -29,12 +29,6 @@
     <textarea class="form-control" rows="3" id="acpttestresults"></textarea>
   </div>
 </div>
-  <div class="form-group row">
-    <label for="acpttestbug" class="col-2 col-form-label">Bug Id</label>
-    <div class="col-10">
-    	<a href="/tasks/{{$feature->id}}/store">Create a new Bug</a>
-  </div>
-  </div>
   <div class="form-group row">
   <div class="col-8" align="center">
     <br><br><button type="submit" class="btn btn-primary">Submit</button>

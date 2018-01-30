@@ -14,7 +14,7 @@
   <form  method="POST" action="/features/{{ $feature->id }}/update">
       {{ csrf_field() }}
 	  <div class="form-group row">
-	    <h1> Create a new Feature</h1>
+	    <h1> Edit a Feature</h1>
 	  </div>
 	  
 	  <div class="form-group row">
