@@ -11,6 +11,24 @@
   </head>
   <body>
 @extends ('layout/header')
-@extends('layout/createiterationlayout')
+<div class="container">
+  <form action="/iterations/{{ $project->id }}/store" method="post">
+  {{ csrf_field() }}
+  <div class="form-group row">
+    <h1> Create a new Iteration</h1>
+  </div>
+<div class="form-group row">
+  <label for="iterationdeadline" class="col-2 col-form-label">Deadline</label>
+  <div class="col-10">
+    <input class="form-control" type="date" id="iterationdeadline"></textarea>
+  </div>
+</div>
+  <div class="form-group row">
+  <div class="col-8" align="center">
+    <br><br><button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</form>
+</div>
 </body>
 </html>
