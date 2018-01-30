@@ -32,7 +32,7 @@
   <div class="form-group row">
     <label for="acpttestbug" class="col-2 col-form-label">Bug Id</label>
     <div class="col-10">
-      <a href="/tasks/{{$feature->id}}/store">Create a new Bug</a>
+      <a href="/tasks/{{$acceptance_test->feature_id}}/store">Create a new Bug</a>
   </div>
   </div>
   <div class="form-group row">
