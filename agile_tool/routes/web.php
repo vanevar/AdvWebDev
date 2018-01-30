@@ -11,90 +11,10 @@
 |
 */
 
-/*
-Routes for the controllers -- BEGIN
-*/
-
-Route::resource('acceptanceTests', 'AcceptanceTestController');
-Route::resource('acceptanceTestsStatus', 'AcceptanceTestStatusController');
-Route::resource('features', 'FeatureController');
-Route::resource('iterations', 'IterationController');
-Route::resource('members', 'MemberController');
-Route::resource('projects', 'ProjectController');
-Route::resource('projectMembers', 'ProjectMemberController');
-Route::resource('projectRoles', 'ProjectRoleController');
-Route::resource('tasks', 'TaskController');
-Route::resource('taskStatus', 'TaskStatusController');
-Route::resource('userRoles', 'UserRoleController');
-/*
-Routes for the controllers -- END
-*/
 // Vanessa's Controllers Tests
 Route::get('/home/{name}', 'ProjectController@getProjectsByUser');
 
 
-/* Rohit's version !!!!!*/
-/*
-Route::get('/project/features', function()
-{
-	$feature = DB::table('feature')->get();
-	return view('project/feature',['feature' => $feature]);
-});
-Route::get('/project/iterations', function()
-{
-	$iteration = DB::table('iteration')->get();
-	return view('project/iteration',['iteration' => $iteration]);
-});
-Route::get('/project/features/tasks', function()
-{
-	$task = DB::table('task')->get();
-	return view('project/task',['task' => $task]);
-});
-Route::get('/project/features/acceptancetests', function()
-{
-	$acceptance_test = DB::table('acceptance_test')->get();
-	return view('project/acceptancetest',['acceptance_test' => $acceptance_test]);
-});
-
-Route::get('/project', function(){
-	$project = DB::table('project')->get();
-	return view('project/project',['project' => $project]);
-});
-
-Route::get('/', function(){
-return view('project/login');
-});
-Route::get('/project/create', function(){
-return view('create/createproject');
-});
-Route::get('/project/edit', function(){
-return view('edit/editproject');
-});
-Route::get('/project/features/create', function(){
-return view('create/createfeature');
-});
-Route::get('/project/features/edit', function(){
-return view('edit/editfeature');
-});
-Route::get('/project/features/tasks/create', function(){
-return view('create/createtask');
-});
-Route::get('/project/features/tasks/edit', function(){
-return view('edit/edittask');
-});
-Route::get('/project/features/acceptancetests/create', function(){
-return view('create/createacpttest');
-});
-Route::get('/project/features/acceptancetests/edit', function(){
-return view('edit/editacpttest');
-});
-Route::get('/project/iterations/create', function(){
-return view('create/createiteration');
-});
-Route::get('/project/iterations/edit', function(){
-return view('edit/edititeration');
-});
-*/
 Route::get('/', function(){
 	return view('login');
 });
@@ -102,7 +22,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/features/{project}', 'FeatureController@show');
+/**
+	Feature
+**/
+
+Route::get('/features/{project}', 'FeatureController@index');
 
 Route::get('/features/{project}/create', 'FeatureController@create');
 
@@ -111,3 +35,59 @@ Route::post('/features/{project}/store', 'FeatureController@store');
 Route::get('/features/{feature}/edit', 'FeatureController@edit');
 
 Route::post('/features/update', 'FeatureController@update');
+
+/**
+	Task
+**/
+
+Route::get('/tasks/{feature}', 'TaskController@index');
+
+Route::get('/tasks/{feature}/create', 'TaskController@create');
+
+Route::post('/tasks/{feature}/store', 'TaskController@store');
+
+Route::get('/tasks/{task}/edit', 'TaskController@edit');
+
+Route::post('/tasks/update', 'TaskController@update');
+
+/**
+	Project
+**/
+
+Route::get('/projects', 'ProjectController@index');
+
+Route::get('/projects/create', 'ProjectController@create');
+
+Route::post('/projects/store', 'ProjectController@store');
+
+Route::get('/projects/{feature}/edit', 'ProjectController@edit');
+
+Route::post('/projects/update', 'ProjectController@update');
+
+/**
+	Iteration
+**/
+
+Route::get('/iterations/{project}', 'IterationController@index');
+
+Route::get('/iterations/{project}/create', 'IterationController@create');
+
+Route::post('/iterations/{project}/store', 'IterationController@store');
+
+Route::get('/iterations/{iteration}/edit', 'IterationController@edit');
+
+Route::post('/iterations/update', 'IterationController@update');
+
+/**
+	AcceptanceTest
+**/
+
+Route::get('/acceptance-tests/{feature}', 'AcceptanceTestController@index');
+
+Route::get('/acceptance-tests/{feature}/create', 'AcceptanceTestController@create');
+
+Route::post('/acceptance-tests/{feature}/store', 'AcceptanceTestController@store');
+
+Route::get('/acceptance-tests/{acceptance-test}/edit', 'AcceptanceTestController@edit');
+
+Route::post('/acceptance-tests/update', 'AcceptanceTestController@update');
