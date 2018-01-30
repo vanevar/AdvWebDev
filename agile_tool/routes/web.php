@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -55,7 +53,7 @@ Route::get('/projects', 'ProjectController@index');
 
 Route::get('/projects/create', 'ProjectController@create');
 
-Route::post('/projects/store', 'ProjectController@store');
+Route::post('/projects', 'ProjectController@store');
 
 Route::get('/projects/{feature}/edit', 'ProjectController@edit');
 

@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Acceptance_test_status;
+use App\Feature;
+use App\Iteration;
+
 class Acceptance_test extends Model
 {
         /**
@@ -19,4 +23,17 @@ class Acceptance_test extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    function test_status()
+    {
+        return $this->hasMany(Acceptance_test_status::class);
+    }
+
+    function feature(){
+        return $this->belongsTo(Feature::class);
+    }
+
+    function bug(){
+        return $this->hasOne(Task::class);
+    }
 }
