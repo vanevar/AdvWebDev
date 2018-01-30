@@ -1,3 +1,12 @@
+-- ******************************************************************************************
+-- ******************************************************************************************
+--		         TRIGGERS FOR ADVANCED WEB DEVELOPMENT PROJECT
+-- ******************************************************************************************
+-- ******************************************************************************************
+
+
+
+
 -- -------------------------------------------------------------------------------
 -- TRIGGER 1 : member_before_insert && member_before_update
 -- -------------------------------------------------------------------------------
@@ -127,7 +136,7 @@ BEGIN
  
  
  if new.role_id = 1 then
- select count(member_id) into membercount from project_user where role_id=1 and project_id= new.project_id;
+ select count(user_id) into membercount from project_user where role_id=1 and project_id= new.project_id;
  
  if membercount = 1 then
 	set msg = concat('Coach already exists');
@@ -137,7 +146,7 @@ BEGIN
 end if;	
 	
 	if new.role_id =2 then 
-	select count(member_id) into membercount from project_user where role_id=2 and project_id= new.project_id;
+	select count(user_id) into membercount from project_user where role_id=2 and project_id= new.project_id;
 	
 if membercount = 1 then
 	set msg = concat('Project owner already exists');
@@ -158,7 +167,7 @@ BEGIN
  declare msg varchar(128);
  
  if new.role_id = 1 then
- select count(member_id) into membercount from project_user where role_id=1 and project_id= new.project_id;
+ select count(user_id) into membercount from project_user where role_id=1 and project_id= new.project_id;
  
  if membercount = 1 then
 	set msg = concat('Coach already exists');
@@ -168,7 +177,7 @@ BEGIN
     end if;	
 	
 	if new.role_id =2 then 
-	select count(member_id) into membercount from project_user where role_id=2 and project_id= new.project_id;
+	select count(user_id) into membercount from project_user where role_id=2 and project_id= new.project_id;
 	
 if membercount = 1 then
 	set msg = concat('Project owner already exists');
