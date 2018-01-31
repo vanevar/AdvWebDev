@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Project_member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -66,7 +67,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return View::make('create.createproject');
+        $member = Auth::user();
+        return View::make('create.createproject')
+        ->with('member', $member);
     }
 
     /**
@@ -87,6 +90,15 @@ class ProjectController extends Controller
         $project->created_at = date('Y-m-d H:i:s');
 
         $project->save();
+
+        //create project_member relationship
+        $project_member = new Project_member;
+        $project_member->member_id = Auth::id();
+        $project_member->project_id = $project->id;
+        $project_member->role_id = 2; //OWNER
+        $project_member->added_at = $project->created_at;
+        $project_member->save();
+
         // redirect
         return Redirect::to('projects');
         

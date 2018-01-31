@@ -12,7 +12,7 @@
   <body>
 @extends ('layout/header')
 <div class="container">
-<form action="/projects/{{ $member->id }}/store" method="post">
+<form action="/projects/" method="post">
   {{ csrf_field() }}
   <div class="form-group row">
   <h1>Create a New Project</h1>
