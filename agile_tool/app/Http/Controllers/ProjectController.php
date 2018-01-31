@@ -121,10 +121,11 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($project_id)
     {
+        $project = Project::find($project_id);
         return View::make('edit.editproject')
-            ->with('project', $project);;
+            ->with('project', $project);
     }
 
     /**
@@ -134,12 +135,14 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $projectequest, Project $project)
+    public function update(Request $projectequest, $project_id)
     {
+        return "test";
+        $project = Project::find($project_id);
         $project->name = $projectequest->projectname;
         $project->description = $projectequest->projectdescription;
-
         $project->save();
+        return $project;
         return Redirect::to('projects');
     }
 

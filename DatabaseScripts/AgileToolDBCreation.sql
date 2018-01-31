@@ -11,8 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema agile_tool
 -- -----------------------------------------------------
--- CREATE SCHEMA IF NOT EXISTS `agile_tool` DEFAULT CHARACTER SET utf8 ;
--- USE `agile_tool` ;
+CREATE SCHEMA IF NOT EXISTS `agile_tool` DEFAULT CHARACTER SET utf8 ;
+USE `agile_tool` ;
 
 -- -----------------------------------------------------
 -- Table `agile_tool`.`member`

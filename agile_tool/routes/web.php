@@ -55,9 +55,9 @@ Route::get('/projects/create', 'ProjectController@create');
 
 Route::post('/projects', 'ProjectController@store');
 
-Route::get('/projects/{feature}/edit', 'ProjectController@edit');
+Route::get('/projects/{project}/edit', 'ProjectController@edit');
 
-Route::post('/projects/{feature}/update', 'ProjectController@update');
+Route::post('/projects/{project}/update', 'ProjectController@update');
 
 /**
 	Iteration
@@ -77,12 +77,12 @@ Route::post('/iterations/{iteration}/update', 'IterationController@update');
 	AcceptanceTest
 **/
 
+Route::get('/acceptance-tests/{acceptance-test}/edit', 'AcceptanceTestController@edit');
+
+Route::post('/acceptance-tests/{acceptance-test}/update', 'AcceptanceTestController@update');
+
 Route::get('/acceptance-tests/{feature}', 'AcceptanceTestController@index');
 
 Route::get('/acceptance-tests/{feature}/create', 'AcceptanceTestController@create');
 
 Route::post('/acceptance-tests/{feature}/store', 'AcceptanceTestController@store');
-
-Route::get('/acceptance-tests/{acceptance-test}/edit', 'AcceptanceTestController@edit');
-
-Route::post('/acceptance-tests/{acceptance-test}update', 'AcceptanceTestController@update');

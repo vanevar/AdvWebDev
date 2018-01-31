@@ -24,6 +24,11 @@ class Project extends Model
      */
     public $timestamps = false;
 
+    protected $fillable = [
+            'name',
+            'description'
+        ];
+
     public function features(){
         return $this->hasMany(Feature::class);
     }
