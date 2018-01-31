@@ -17,7 +17,7 @@
 
 <div class="featurespecial">
 	<div class="form-group row">
-  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+  <button type="button" class="btn btn-outline-info" onclick="javascript:history.back()">Go back</button>
 </div>
   <form  method="POST" action="/features/{{ $project->id }}/store">
       {{ csrf_field() }}

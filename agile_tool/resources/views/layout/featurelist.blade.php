@@ -1,6 +1,6 @@
 <div class="container">
 <div class="form-group row">
-  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+  <button type="button" class="btn btn-outline-info" onclick="javascript:history.back()">Go back</button>
 </div>
       <div class = "row">
 	  <h1>Features</h1> 
