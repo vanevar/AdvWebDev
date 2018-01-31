@@ -10,8 +10,12 @@
     <link href="/css/check.css" rel="stylesheet">
   </head>
   <body>
+    <a href="{{ URL::previous() }}">Go Back</a>
 @extends ('layout/header')
 <div class="container">
+  <div class="form-group row">
+  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+</div>
   <form action="/acceptance-tests/{{ $feature->id }}/store" method="post">
   {{ csrf_field() }}
   <div class="form-group row">

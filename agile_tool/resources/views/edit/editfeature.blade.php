@@ -11,6 +11,9 @@
   </head>
   <body>
 @extends ('layout/header')<div class="featurespecial">
+	<div class="form-group row">
+  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+</div>
   <form  method="POST" action="/features/{{ $feature->id }}/update">
       {{ csrf_field() }}
 	  <div class="form-group row">

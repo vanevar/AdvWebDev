@@ -12,6 +12,9 @@
   <body>
 @extends ('layout/header')
 <div class="container">
+  <div class="form-group row">
+  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+</div>
     <form action="/tasks/{{ $task->id }}/update" method="post">
   {{ csrf_field() }}
   <div class="form-group row">

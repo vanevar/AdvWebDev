@@ -1,5 +1,7 @@
  <div class="container">
-
+<div class="form-group row">
+  <button type="button" class="btn btn-outline-info"><a href="{{ URL::previous() }}">Go Back</a></button>
+</div>
       <div class = "row">
 	  <h1>Iterations</h1> 
 	  
