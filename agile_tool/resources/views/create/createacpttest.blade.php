@@ -12,7 +12,7 @@
   <body>
 @extends ('layout/header')
 <div class="container">
-  <form action="/acceptancetests/{{ $feature->id }}/store" method="post">
+  <form action="/acceptance-tests/{{ $feature->id }}/store" method="post">
   {{ csrf_field() }}
   <div class="form-group row">
     <h1> Create a new Acceptance Test</h1>
@@ -20,13 +20,13 @@
 <div class="form-group row">
   <label for="acpttestdesc" class="col-2 col-form-label">Description</label>
   <div class="col-10">
-    <textarea class="form-control" rows="3" id="acpttestdesc"></textarea>
+    <textarea class="form-control" rows="3" id="description"></textarea>
   </div>
 </div>
 <div class="form-group row">
   <label for="acpttestresults" class="col-2 col-form-label">Test Results</label>
   <div class="col-10">
-    <textarea class="form-control" rows="3" id="acpttestresults"></textarea>
+    <textarea class="form-control" rows="3" id="results"></textarea>
   </div>
 </div>
   <div class="form-group row">
