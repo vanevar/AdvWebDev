@@ -59,10 +59,16 @@
 	  <div class="form-group row">
 	    <label for="iteration_id" class="col-2 col-form-label">Iteration</label>
 	    <div class="col-10">
+
 	      <select class="form-control" id="iteration_id" name="iteration_id">
-			@foreach ($feature->iteration->all() as $iteration)
+	      	 @if ($feature->iteration_id == null)
+              	<option selected disabled>No Iteration id</option>             
+             @elseif($feature->iteration_id != null)
+			 @foreach ($feature->iteration->all() as $iteration)
 				<option value="{{ $iteration->id }}">number: {{ $iteration->id }} deadline: {{ $iteration->deadline }}</option>
-			@endforeach
+			 @endforeach
+			 @endif
+	      
 	      </select>
 	    </div>
 	  </div>
