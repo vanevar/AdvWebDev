@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use App\Project_member;
+use App\Project_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,9 +17,9 @@ class ProjectController extends Controller
     //Gets the Projects for the given user id
     public function getProjectsByUser($user_id){
         //Get all the projects by the given user Id
-        $projects = Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
+        $projects = Project::join('project_user AS pm', 'pm.project_id', '=', 'project.id')
         ->join('user AS u', 'u.id', '=', 'project.administrator_id')
-        ->where('pm.member_id', '=', $user_id)
+        ->where('pm.user_id', '=', $user_id)
         ->select('project.id' 
         , 'project.name' 
         , 'project.description' 
@@ -44,9 +44,9 @@ class ProjectController extends Controller
     {
         $user_id = Auth::id();
  
-        $projects = Project::join('project_member AS pm', 'pm.project_id', '=', 'project.id')
+        $projects = Project::join('project_user AS pm', 'pm.project_id', '=', 'project.id')
         ->join('users AS u', 'u.id', '=', 'project.administrator_id')
-        ->where('pm.member_id', '=', $user_id)
+        ->where('pm.user_id', '=', $user_id)
         ->select('project.id' 
         , 'project.name' 
         , 'project.description' 
@@ -91,13 +91,13 @@ class ProjectController extends Controller
 
         $project->save();
 
-        //create project_member relationship
-        $project_member = new Project_member;
-        $project_member->member_id = Auth::id();
-        $project_member->project_id = $project->id;
-        $project_member->role_id = 2; //OWNER
-        $project_member->added_at = $project->created_at;
-        $project_member->save();
+        //create project_user relationship
+        $project_user = new Project_user;
+        $project_user->user_id = Auth::id();
+        $project_user->project_id = $project->id;
+        $project_user->role_id = 2; //OWNER
+        $project_user->added_at = $project->created_at;
+        $project_user->save();
 
         // redirect
         return Redirect::to('projects');

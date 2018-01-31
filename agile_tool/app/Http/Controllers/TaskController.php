@@ -22,7 +22,7 @@ class TaskController extends Controller
 
     public function getMembersByProject($project_id)
     {
-        $members = Member::join('project_member AS pm', 'pm.member_id', '=', 'member.id')
+        $members = Member::join('project_user AS pm', 'pm.user_id', '=', 'member.id')
         ->where('pm.project_id', '=', $project_id )
         ->get();
         return $members;
