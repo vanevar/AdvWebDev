@@ -12,9 +12,8 @@
   </head>
 
   <body>
-  @extends('layouts.app')
-  <br><br>
-  <br><br>
-   @extends('layout/projectlist')
+  @extends('layout/header')
+  
+  <br><br> @extends('layout/projectlist')
 </body>
 </html>
